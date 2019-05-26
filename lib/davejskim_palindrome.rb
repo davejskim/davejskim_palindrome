@@ -1,9 +1,24 @@
 require "davejskim_palindrome/version"
 
-class String 
+module DavejskimPalindrome
   def palindrome?
     processed_content == processed_content.reverse    
   end
+  
+  private
+    def processed_content
+      self.to_s.scan(/[a-z\d]/i).join.downcase
+    end
+end
+
+class String
+  include DavejskimPalindrome
+end
+
+class Integer
+  include DavejskimPalindrome
+end
+
   
   # def letters
   #   the_letters=[]
@@ -25,11 +40,5 @@ class String
   #     self.letters.downcase
   #   end
 
-  private
-    def processed_content
-      self.scan(/[a-z]/i).join.downcase
-    end
-    
 
-end
 
